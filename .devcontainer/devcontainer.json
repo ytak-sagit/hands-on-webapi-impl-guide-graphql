@@ -1,0 +1,31 @@
+{
+  "name": "GraphQL Web API Example",
+  "dockerComposeFile": [
+    "../compose.yaml"
+  ],
+  "service": "app",
+  "workspaceFolder": "/workspace",
+  "initializeCommand": "mkdir -p ./node_modules",
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true,
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "biomejs.biome",
+        "mhutchie.git-graph"
+      ],
+      "settings": {
+        "files.autoSave": "off",
+        "editor.detectIndentation": true,
+        "editor.insertSpaces": true,
+        "editor.indentSize": "tabSize",
+        "editor.tabSize": 2,
+        "editor.codeActionsOnSave": {
+          "quickfix.biome": "explicit",
+          "source.organizeImports.biome": "explicit"
+        },
+        "editor.defaultFormatter": "biomejs.biome"
+      }
+    }
+  }
+}
