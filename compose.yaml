@@ -1,0 +1,21 @@
+services:
+  app:
+    container_name: example-graphql-webapi
+    build:
+      context: .
+      dockerfile: Dockerfile
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      - node_modules:/workspace/node_modules
+    environment:
+      TZ: Asia/Tokyo
+    tty: true
+
+volumes:
+  node_modules:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${PWD}/node_modules
+      o: bind
