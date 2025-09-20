@@ -13,6 +13,14 @@ const resolvers = {
   Query: {
     authors: () =>
       Object.entries(db.users).map(([id, user]) => ({ id, ...user })),
+    posts: (_, { tags }) =>
+      Object.entries(db.blogs)
+        .map(([id, post]) => ({ id, ...post }))
+        .filter(
+          (post) =>
+            typeof tags === "undefined" ||
+            tags.some((tag) => post.tags.includes(tag)),
+        ),
   },
   Author: {
     // NOTE:
@@ -26,6 +34,7 @@ const resolvers = {
         .map(([id, post]) => ({ id, ...post })),
   },
   Post: {
+    author: ({ author }) => ({ id: author, ...db.users[author] }),
     tags: ({ tags }) => tags.map((name) => ({ name })),
   },
 };
