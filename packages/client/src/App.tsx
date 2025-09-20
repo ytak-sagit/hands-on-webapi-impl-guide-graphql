@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { gql, useQuery } from "urql";
+import { useQuery } from "urql";
+import { graphql } from "./gql";
 
-const PostsQuery = gql`
+const PostsQuery = graphql(/* GraphQL */ `
   query posts($tags: [String!]) {
     posts(tags: $tags) {
       title
@@ -11,7 +12,7 @@ const PostsQuery = gql`
       }
     }
   }
-`;
+`);
 
 const ChoosableTags = [
   "GraphQL",
