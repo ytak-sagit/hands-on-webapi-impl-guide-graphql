@@ -1,7 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { Client, cacheExchange, fetchExchange, Provider } from "urql";
-import "./index.css";
 import App from "./App.tsx";
 
 const client = new Client({
