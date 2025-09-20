@@ -14,10 +14,14 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 type Documents = {
-    "\n  query posts($tags: [String!]) {\n    posts(tags: $tags) {\n      title\n      body\n      author {\n        name\n      }\n    }\n  }\n": typeof types.PostsDocument,
+    "\n  query posts($tags: [String!]) {\n    posts(tags: $tags) {\n      title\n      ...PostFragment\n    }\n  }\n": typeof types.PostsDocument,
+    "\n  fragment AuthorFragment on Author {\n    name\n  }\n": typeof types.AuthorFragmentFragmentDoc,
+    "\n  fragment PostFragment on Post {\n    title\n    body\n    author {\n      ...AuthorFragment\n    }\n  }\n": typeof types.PostFragmentFragmentDoc,
 };
 const documents: Documents = {
-    "\n  query posts($tags: [String!]) {\n    posts(tags: $tags) {\n      title\n      body\n      author {\n        name\n      }\n    }\n  }\n": types.PostsDocument,
+    "\n  query posts($tags: [String!]) {\n    posts(tags: $tags) {\n      title\n      ...PostFragment\n    }\n  }\n": types.PostsDocument,
+    "\n  fragment AuthorFragment on Author {\n    name\n  }\n": types.AuthorFragmentFragmentDoc,
+    "\n  fragment PostFragment on Post {\n    title\n    body\n    author {\n      ...AuthorFragment\n    }\n  }\n": types.PostFragmentFragmentDoc,
 };
 
 /**
@@ -37,7 +41,15 @@ export function graphql(source: string): unknown;
 /**
  * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function graphql(source: "\n  query posts($tags: [String!]) {\n    posts(tags: $tags) {\n      title\n      body\n      author {\n        name\n      }\n    }\n  }\n"): (typeof documents)["\n  query posts($tags: [String!]) {\n    posts(tags: $tags) {\n      title\n      body\n      author {\n        name\n      }\n    }\n  }\n"];
+export function graphql(source: "\n  query posts($tags: [String!]) {\n    posts(tags: $tags) {\n      title\n      ...PostFragment\n    }\n  }\n"): (typeof documents)["\n  query posts($tags: [String!]) {\n    posts(tags: $tags) {\n      title\n      ...PostFragment\n    }\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment AuthorFragment on Author {\n    name\n  }\n"): (typeof documents)["\n  fragment AuthorFragment on Author {\n    name\n  }\n"];
+/**
+ * The graphql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function graphql(source: "\n  fragment PostFragment on Post {\n    title\n    body\n    author {\n      ...AuthorFragment\n    }\n  }\n"): (typeof documents)["\n  fragment PostFragment on Post {\n    title\n    body\n    author {\n      ...AuthorFragment\n    }\n  }\n"];
 
 export function graphql(source: string) {
   return (documents as any)[source] ?? {};

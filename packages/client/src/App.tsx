@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { useQuery } from "urql";
 import { graphql } from "./gql";
+import { Post } from "./post";
 
+// App.tsx 内でkeyとして使うために、`title` をFragmentの外側で取得している。
 const PostsQuery = graphql(/* GraphQL */ `
   query posts($tags: [String!]) {
     posts(tags: $tags) {
       title
-      body
-      author {
-        name
-      }
+      ...PostFragment
     }
   }
 `);
@@ -65,15 +64,7 @@ function App() {
       ) : error ? (
         <p>Oh no... {error.message}</p>
       ) : data?.posts.length ? (
-        <ul>
-          {data?.posts.map((post) => (
-            <li key={post.title}>
-              <h2>{post.title}</h2>
-              <p>{post.body}</p>
-              <p>Author: {post.author.name}</p>
-            </li>
-          ))}
-        </ul>
+        data?.posts.map((post) => <Post key={post.title} postFragment={post} />)
       ) : (
         <p>No posts found.</p>
       )}
