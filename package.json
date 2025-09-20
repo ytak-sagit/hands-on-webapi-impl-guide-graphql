@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "『ユーザーに価値を正しく届けるWeb API開発実践ガイド』第3章（GraphQL）ハンズオン用リポジトリ",
   "scripts": {
-    "lint": "bunx @biomejs/biome lint packages"
+    "lint": "npx @biomejs/biome lint packages"
   },
   "repository": {
     "type": "git",
