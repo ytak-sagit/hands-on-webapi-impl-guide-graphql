@@ -63,7 +63,7 @@ function App() {
         <p>Loading...</p>
       ) : error ? (
         <p>Oh no... {error.message}</p>
-      ) : (
+      ) : data?.posts.length ? (
         <ul>
           {data?.posts.map((post) => (
             <li key={post.title}>
@@ -73,6 +73,8 @@ function App() {
             </li>
           ))}
         </ul>
+      ) : (
+        <p>No posts found.</p>
       )}
     </>
   );
