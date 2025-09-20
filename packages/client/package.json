@@ -6,17 +6,21 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "codegen": "graphql-codegen"
   },
   "dependencies": {
     "react": "^19.1.1",
     "react-dom": "^19.1.1"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^6.0.0",
+    "@graphql-codegen/client-preset": "^5.0.1",
     "@types/react": "^19.1.13",
     "@types/react-dom": "^19.1.9",
     "@vitejs/plugin-react-swc": "^4.0.1",
     "globals": "^16.4.0",
+    "graphql": "^16.11.0",
     "urql": "^5.0.1",
     "vite": "^7.1.6"
   }
