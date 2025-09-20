@@ -1,0 +1,22 @@
+{
+  "name": "server",
+  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "transpile": "tsc",
+    "start": "npm run transpile && node ./dist/index.js"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^5.0.0",
+    "@graphql-tools/graphql-file-loader": "^8.1.1",
+    "@graphql-tools/load": "^8.1.2",
+    "@graphql-tools/schema": "^10.0.25",
+    "dataloader": "^2.2.3",
+    "graphql": "^16.11.0"
+  }
+}
